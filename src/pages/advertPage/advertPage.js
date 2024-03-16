@@ -4,8 +4,6 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import HeaderDetails from "./headerDetails";
 
-import HistoryIcon from "@mui/icons-material/History";
-
 import React from "react";
 const AdvertPage = () => {
     const { state } = useLocation();
@@ -16,6 +14,12 @@ const AdvertPage = () => {
             { title: "İlan Tarihi", value: "04 mart 2024" },
             { title: "Araç tipi", value: "Panelvan" },
             { title: "Kimden", value: "Cüneyt'ten" },
+        ],
+        technicalProperties: [
+            { title: "Araç Tipi", value: "SUV / Arazi aracı / I Segment" },
+            { title: "Kasa Tipi / Kapı Sayısı", value: "SUV / 5 Kapı" },
+            { title: "Motor Tipi", value: "	Dizel / 6 silindir" },
+            { title: "Üretim Yılı (İlk / Son)", value: "2013 / 2018" },
         ],
         description:
             "Bu fiyata piyasanın en uygun  en temiz aracı,Absürd  teklifler etmeyin lütfen Muayene 2025 mart ayına kadar vardır.Ses sistemi mevcuttur.Şimdiden hayırlı olsun",
@@ -118,6 +122,41 @@ const AdvertPage = () => {
                     >
                         Genel Bakış
                     </Typography>
+
+                    {detail.technicalProperties.map((det, index) => (
+                        <Grid
+                            container
+                            style={{
+                                marginTop: "2%",
+                                padding: "5px",
+                                backgroundColor:
+                                    index % 2 === 0 ? "whitesmoke" : "white",
+                                height: "50px",
+                                alignItems: "center",
+                            }}
+                        >
+                            <Grid xs={6}>
+                                <Typography
+                                    sx={{
+                                        fontWeight: "600",
+                                    }}
+                                >
+                                    {det.title}{" "}
+                                </Typography>
+                            </Grid>
+                            <Grid xs={6}>
+                                <Typography
+                                    sx={{
+                                        color: det.title.includes("İlan No")
+                                            ? "red"
+                                            : "black",
+                                    }}
+                                >
+                                    {det.value}{" "}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    ))}
                 </Grid>
             </Grid>
         </Grid>

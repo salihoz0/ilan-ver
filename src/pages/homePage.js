@@ -1,15 +1,16 @@
 /** @format */
 
-import { Grid, TextField } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import SmallImageComponent from "../components/smallImageComponent";
 import { faker } from "@faker-js/faker";
 import { useEffect, useState } from "react";
 import logo from "../logo.png";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 function HomePage() {
     const [list, setList] = useState([]);
     const [filteredList, setFilteredList] = useState([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
         generate();
     }, []);
@@ -41,7 +42,7 @@ function HomePage() {
                 style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "30%",
+                    gap: "20%",
                 }}
             >
                 <img
@@ -56,8 +57,21 @@ function HomePage() {
                     onChange={(e) => search(e.target.value)}
                     style={{ width: "30%" }}
                 />
+                <Button
+                    variant="contained"
+                    onClick={() => navigate("/ilan-ver")}
+                    sx={{
+                        whiteSpace: "nowrap",
+                        width: { xs: "30%", lg: "20%" },
+                        textTransform: "none",
+                        fontWeight: "700",
+                        padding: "15px",
+                        boxShadow: 0,
+                    }}
+                >
+                    Ücretsiz İlan Ver
+                </Button>
             </Grid>
-
             {filteredList.map((advert) => (
                 <Grid item xs={2}>
                     <SmallImageComponent
